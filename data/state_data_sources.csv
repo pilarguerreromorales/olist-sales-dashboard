@@ -1,0 +1,7 @@
+category,source,year,url,methodology
+Population Data,IBGE - Instituto Brasileiro de Geografia e Estatística,2017 estimates,https://www.ibge.gov.br/estatisticas/sociais/populacao.html,"Official population projections for 2017, closest to your 2016-2018 timeframe"
+GDP per Capita,IBGE - Contas Regionais do Brasil,2017,https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9054-contas-regionais-do-brasil.html,"State GDP divided by population, in thousands of reais"
+Internet Penetration,ANATEL - Agência Nacional de Telecomunicações + TIC Domicílios Survey,2017,https://www.anatel.gov.br/ and https://cetic.br/,Percentage of households with internet access by state
+Education Levels,IBGE - Pesquisa Nacional por Amostra de Domicílios (PNAD),2017,https://www.ibge.gov.br/estatisticas/sociais/educacao.html,Percentage of population 25+ with higher education degree
+Urbanization Rate,IBGE - Classificação e caracterização dos espaços rurais e urbanos,2017 Census projections,https://www.ibge.gov.br/geociencias/organizacao-do-territorio.html,Percentage of population living in urban areas
+Geographic Data,IBGE - Área territorial brasileira,Official measurements,https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial.html,Official state area measurements in km²
