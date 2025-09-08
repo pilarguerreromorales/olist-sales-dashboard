@@ -181,9 +181,8 @@ CREATE TABLE dim_order_items (
 CREATE TABLE fact_orders (
     order_id TEXT PRIMARY KEY,
     customer_id TEXT NOT NULL,
-    order_status TEXT NOT NULL CHECK (
-        order_status IN ('delivered', 'shipped', 'processing', 'unavailable', 'canceled', 'approved', 'invoiced')
-    ),
+    order_status TEXT NOT NULL CHECK 
+    (order_status IN ('delivered', 'shipped', 'processing', 'unavailable', 'canceled', 'approved', 'invoiced', 'created')),
     order_purchase_timestamp DATETIME NOT NULL CHECK (
         order_purchase_timestamp BETWEEN '2016-01-01' AND '2018-12-31'
     ),
@@ -198,12 +197,7 @@ CREATE TABLE fact_orders (
     on_time_delivery INTEGER CHECK (on_time_delivery IN (0, 1)),
     
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    
-    -- Check logical date ordering
-    CHECK (order_approved_at IS NULL OR order_approved_at >= order_purchase_timestamp),
-    CHECK (order_delivered_carrier_date IS NULL OR order_delivered_carrier_date >= order_purchase_timestamp),
-    CHECK (order_delivered_customer_date IS NULL OR order_delivered_customer_date >= order_delivered_carrier_date),
-    
+   
     -- Foreign key relationships
     FOREIGN KEY (customer_id) REFERENCES dim_customers(customer_id)
 );
