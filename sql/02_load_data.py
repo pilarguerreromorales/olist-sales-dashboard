@@ -206,6 +206,13 @@ class OlistDataLoader:
         
         df = pd.read_csv(f'{self.data_folder}/olist_order_reviews_dataset.csv')
         
+        # Remove duplicate review_ids, keep first occurrence
+        initial_count = len(df)
+        df = df.drop_duplicates(subset=['review_id'], keep='first')
+        duplicates_removed = initial_count - len(df)
+        
+        logger.info(f"Removed {duplicates_removed} duplicate reviews")
+        
         # Convert date columns
         df['review_creation_date'] = pd.to_datetime(df['review_creation_date'])
         df['review_answer_timestamp'] = pd.to_datetime(df['review_answer_timestamp'])
@@ -267,11 +274,19 @@ class OlistDataLoader:
         
         df = pd.read_csv(f'{self.data_folder}/olist_geolocation_dataset.csv')
         
+        # Remove complete duplicate rows
+        initial_count = len(df)
+        df = df.drop_duplicates()
+        duplicates_removed = initial_count - len(df)
+        
+        logger.info(f"Removed {duplicates_removed:,} complete duplicate records")
+        logger.info(f"Loading {len(df):,} unique geolocation records")
+        
         # Insert data
         df.to_sql('dim_geolocation', self.conn, if_exists='append', index=False)
         
         count = len(df)
-        logger.info(f"Loaded {count} geolocation records")
+        logger.info(f"Loaded {count:,} geolocation records")
         return count
     
     def verify_data(self):

@@ -95,7 +95,7 @@ CREATE TABLE dim_geolocation (
     geolocation_lng REAL,
     geolocation_city TEXT,
     geolocation_state TEXT,
-    PRIMARY KEY (geolocation_zip_code_prefix, geolocation_lat, geolocation_lng),
+    PRIMARY KEY (geolocation_zip_code_prefix, geolocation_lat, geolocation_lng, geolocation_city, geolocation_state),
     FOREIGN KEY (geolocation_state) REFERENCES dim_states(state_code)
 );
 
