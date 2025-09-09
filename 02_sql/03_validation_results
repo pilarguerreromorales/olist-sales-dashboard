@@ -1,0 +1,80 @@
+(base) MacBook-Air-37:olist-sales-dashboard pilar$ sqlite3 olist_dashboard.db < 02_sql/03_data_validation.sql
+DATA COMPLETENESS CHECK
+dim_states|27|PASS
+dim_product_categories|74|PASS
+dim_customers|99441|PASS
+dim_selElers|3095|PASS
+dim_products|32951|PASS
+fact_orders|99441|PASS
+dim_order_items|112650|PASS
+dim_payments|103886|PASS
+dim_reviews|98410|PASS
+dim_holidays|774|PASS
+dim_economic_indicators|774|PASS
+dim_geolocation|738332|PASS
+|REFERENTIAL INTEGRITY CHECK
+Orders with missing customers|0|PASS
+Customers with invalid state codes|0|PASS
+Sellers with invalid state codes|0|PASS
+Products with invalid categories|0|PASS
+Order items with missing products|0|PASS
+Order items with missing sellers|0|PASS
+Order items with missing orders|0|PASS
+Payments with missing orders|0|PASS
+Reviews with missing orders|0|PASS
+|DATA QUALITY CHECK
+Orders with NULL customer_id|0|PASS
+Orders with NULL order_status|0|PASS
+Orders with NULL purchase_timestamp|0|PASS
+Products with NULL categories (should be unknown)|0|PASS
+Customers with NULL state codes|0|PASS
+Reviews with invalid scores (not 1-5)|0|PASS
+|BUSINESS LOGIC CHECK
+Order status distribution|delivered|96478|97.02
+Order status distribution|shipped|1107|1.11
+Order status distribution|canceled|625|0.63
+Order status distribution|unavailable|609|0.61
+Order status distribution|invoiced|314|0.32
+Order status distribution|processing|301|0.3
+Order status distribution|created|5|0.01
+Order status distribution|approved|2|0.0
+Delivery performance summary|99441|96476|12.1|93.2
+Orders with unrealistic delivery times|63|PASS
+Payment validation|103886|9|0.0|13664.08|154.1
+Duplicate order IDs in fact_orders|0|PASS
+Duplicate review IDs in dim_reviews|0|PASS
+Duplicate product IDs in dim_products|0|PASS
+|DATA RANGE CHECK
+Order date range validation|2016-09-04 21:15:19|2018-10-17 17:30:18|PASS
+Customer geographic distribution|SP|41746
+Customer geographic distribution|RJ|12852
+Customer geographic distribution|MG|11635
+Customer geographic distribution|RS|5466
+Customer geographic distribution|PR|5045
+Customer geographic distribution|SC|3637
+Customer geographic distribution|BA|3380
+Customer geographic distribution|DF|2140
+Customer geographic distribution|ES|2033
+Customer geographic distribution|GO|2020
+Product category distribution|cama_mesa_banho|3029
+Product category distribution|esporte_lazer|2867
+Product category distribution|moveis_decoracao|2657
+Product category distribution|beleza_saude|2444
+Product category distribution|utilidades_domesticas|2335
+Product category distribution|automotivo|1900
+Product category distribution|informatica_acessorios|1639
+Product category distribution|brinquedos|1411
+Product category distribution|relogios_presentes|1329
+Product category distribution|telefonia|1134
+|DATA TRANSFORMATION CHECK
+Delivery metrics calculation check|96478|96470|89936|6534
+Products with unknown category (NULL conversion)|610|1.85
+|VIEW VALIDATION CHECK
+Order analysis view test|99441|PASS
+Regional performance view test|27|PASS
+|DATA SUMMARY STATISTICS
+Database summary|99441|99441|32951|3095|12.1|93.2
+|VALIDATION COMPLETE
+Data validation script completed successfully
+Review any FAIL or REVIEW statuses above for data quality issues
+(base) MacBook-Air-37:olist-sales-dashboard pilar$ 
